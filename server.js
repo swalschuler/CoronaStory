@@ -115,6 +115,7 @@ function handleMessage(sender_psid, received_message) {
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
     let response;
+    let attachment_url = "https://media.giphy.com/media/YPhuwt9pV2XLM2HIq4/giphy.gif";
 
     // Get the payload for the postback
     let payload = received_postback.payload;
