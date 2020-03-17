@@ -121,9 +121,10 @@ function handlePostback(sender_psid, received_postback) {
 
     commandList = payload.split(" ")
     console.log(commandList)
-
+    console.log(commandList[0] + " ==? " + "in")
     // Set the response based on the postback payload
     if (commandList[0] === 'in') {
+        console.log("Entered this if")
         response = {
             "attachment": {
                 "type": "template",
