@@ -136,8 +136,8 @@ function handlePostback(sender_psid, received_postback) {
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "Stay inside $(Number(commandList[1]) + 1)",
-                                "payload": "in $(Number(commandList[1]) + 1)",
+                                "title": "Stay inside " + Number(commandList[1]) + 1,
+                                "payload": "in " + Number(commandList[1]) + 1,
                             },
                             {
                                 "type": "postback",
