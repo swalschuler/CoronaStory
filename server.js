@@ -80,7 +80,7 @@ app.get('/webhook', (req, res) => {
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
     let response;
-    let attachment_url = "https://media.giphy.com/media/YPhuwt9pV2XLM2HIq4/giphy.gif";
+    let attachment_url = "./media/corona.gif";
 
     response = {
         "attachment": {
@@ -95,7 +95,7 @@ function handleMessage(sender_psid, received_message) {
                         {
                             "type": "postback",
                             "title": "Stay inside",
-                            "payload": "in 1",
+                            "payload": "in 0",
                         },
                         {
                             "type": "postback",
@@ -115,7 +115,7 @@ function handleMessage(sender_psid, received_message) {
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
     let response;
-    let attachment_url = "https://media.giphy.com/media/YPhuwt9pV2XLM2HIq4/giphy.gif";
+    let attachment_url = "./media/corona.gif";
 
     // Get the payload for the postback
     let payload = received_postback.payload;
@@ -126,20 +126,21 @@ function handlePostback(sender_psid, received_postback) {
     // Set the response based on the postback payload
     if (commandList[0] === 'in') {
         console.log("Entered this if")
+        var daysSurvived = Number(commandList[1]) + 1
         response = {
             "attachment": {
                 "type": "template",
                 "payload": {
                     "template_type": "generic",
                     "elements": [{
-                        "title": "Nice! You survived another day. What are you going to do today?",
+                        "title": "Nice! You survived another day ( " + daysSurvived + " total) What are you going to do today?",
                         "subtitle": "Tap a button to answer.",
                         "image_url": attachment_url,
                         "buttons": [
                             {
                                 "type": "postback",
-                                "title": "Stay inside " + Number(commandList[1]) + 1,
-                                "payload": "in " + Number(commandList[1]) + 1,
+                                "title": "Stay inside again...",
+                                "payload": "in " + daysSurvived,
                             },
                             {
                                 "type": "postback",
