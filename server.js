@@ -95,7 +95,7 @@ function handleMessage(sender_psid, received_message) {
                         {
                             "type": "postback",
                             "title": "Stay inside",
-                            "payload": "in",
+                            "payload": "in 1",
                         },
                         {
                             "type": "postback",
@@ -119,9 +119,35 @@ function handlePostback(sender_psid, received_postback) {
     // Get the payload for the postback
     let payload = received_postback.payload;
 
+    commandList = payload.split(" ")
+
     // Set the response based on the postback payload
-    if (payload === 'in') {
-        response = { "text": "Nice! You survided another day of Corona!" }
+    if (commandList[0] === 'in') {
+        response = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": "Nice! You survived another day. What are you going to do today?",
+                        "subtitle": "Tap a button to answer.",
+                        "image_url": attachment_url,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Stay inside $(Number(commandList[1]) + 1)",
+                                "payload": "in $(Number(commandList[1]) + 1)",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Go outside!",
+                                "payload": "out",
+                            }
+                        ],
+                    }]
+                }
+            }
+        }
     } else if (payload === 'out') {
         response = { "text": "You dead." }
     }
