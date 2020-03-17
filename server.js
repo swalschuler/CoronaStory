@@ -135,7 +135,7 @@ function handlePostback(sender_psid, received_postback) {
                 "payload": {
                     "template_type": "generic",
                     "elements": [{
-                        "title": "Nice! You survived another day ( " + daysSurvived + " total) What are you going to do today?",
+                        "title": `Nice! You survived another day (${daysSurvived} total) What are you going to do today?`,
                         "subtitle": "Tap a button to answer.",
                         "image_url": attachment_url,
                         "buttons": [
@@ -159,6 +159,7 @@ function handlePostback(sender_psid, received_postback) {
     }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
+    callSendAPI(sender_psid, "Send me any message to play again.")
 }
 
 // Sends response messages via the Send API
