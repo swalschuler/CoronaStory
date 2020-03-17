@@ -1,5 +1,6 @@
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 'use strict';
+const CORONA_IMAGE_URL = "https://obscure-beach-36993.herokuapp.com/media/corona.jpg"
 
 // Imports dependencies and set up http server
 const
@@ -7,6 +8,7 @@ const
     bodyParser = require('body-parser'),
     request = require('request')
 app = express().use(bodyParser.json()); // creates express http server
+app.use(express.static('public'))
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -80,8 +82,8 @@ app.get('/webhook', (req, res) => {
 // Handles messages events
 function handleMessage(sender_psid, received_message) {
     let response;
-    let attachment_url = "https://media.giphy.com/media/YPhuwt9pV2XLM2HIq4/giphy.gif";
-    
+    let attachment_url = CORONA_IMAGE_URL;
+
     response = {
         "attachment": {
             "type": "template",
@@ -115,7 +117,7 @@ function handleMessage(sender_psid, received_message) {
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
     let response;
-    let attachment_url = "media/corona.jpg";
+    let attachment_url = CORONA_IMAGE_URL;
 
     // Get the payload for the postback
     let payload = received_postback.payload;
