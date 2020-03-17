@@ -155,11 +155,10 @@ function handlePostback(sender_psid, received_postback) {
             }
         }
     } else if (payload === 'out') {
-        response = { "text": "You dead." }
+        response = { "text": "You dead. Send another message to play again!" }
     }
     // Send the message to acknowledge the postback
     callSendAPI(sender_psid, response);
-    callSendAPI(sender_psid, "Send me any message to play again.")
 }
 
 // Sends response messages via the Send API
